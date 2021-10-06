@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 public class Exercicio1 {
     public static void main(String[] args) {
+
+        /*Desenvolver um algoritmo que exiba as seguintes informações, porém o que está sublinhado será
+        solicitado ao usuário (por meio do Scanner).
+        EXEMPLO: Olá seu nome é João, você tem 16 anos, é da cidade de Florianópolis,
+        situada no estado de Santa Catarina.*/
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite seu nome");
