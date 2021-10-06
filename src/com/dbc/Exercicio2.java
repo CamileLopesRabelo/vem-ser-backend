@@ -29,6 +29,7 @@ public class Exercicio2 {
         scanner.nextLine();
 
         float media = (nota1 + nota2 + nota3 + nota4)/4;
+        System.out.println("Sua média é: " + media);
 
         if (media <= 5 ){
             System.out.println("Reprovado!");
