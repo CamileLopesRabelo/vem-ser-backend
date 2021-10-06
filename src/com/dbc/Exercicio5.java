@@ -1,6 +1,5 @@
 package com.dbc;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Exercicio5 {
