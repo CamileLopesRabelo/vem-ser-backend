@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Exercicio8 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         double matriz [][] = new double[5][4];
+
         int matricula = 0;
         double mp = 0;
         double mt = 0;
@@ -30,7 +32,7 @@ public class Exercicio8 {
                     mt = scanner.nextDouble();
                     matriz[i][j] = mt;
                 } else {
-                    nf = (mp * 0.6 + mt * 0.4);
+                    nf = (mp * 0.6) + (mt * 0.4);
                     if (nf > maiorNotaFinal){
                         maiorNotaFinal = nf;
                         matriculaComMaiorNotaFinal = matricula;

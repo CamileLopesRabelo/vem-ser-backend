@@ -18,6 +18,7 @@ public class Exercicio2 {
                System.out.println("Errou, o numero a ser encontrado é menor que o digitado");
            }
        } while (numero != numescondido);
+
         System.out.println("Parabéns você acertou!");
 
 
