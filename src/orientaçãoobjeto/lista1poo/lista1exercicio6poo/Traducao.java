@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Traducao {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Palavra p1 = new Palavra();
-        p1.setIngles("Dog");
-        p1.setPortugues("Cachorro");
-        Palavra p2 = new Palavra();
-        p2.setIngles("Time");
-        p2.setPortugues("Tempo");
+        Palavra p1 = new Palavra("cachorro","dog");
+        Palavra p2 = new Palavra("tempo","time");
+        Palavra p3 = new Palavra("amor","love");
+        Palavra p4 = new Palavra("cidade","city");
+        Palavra p5 = new Palavra("feliz","happy");
 
-        Palavra pp[] = {p1,p2};
+
+        Palavra pp[] = {p1,p2,p3,p4,p5};
         System.out.println("Digite a palavra: ");
         String p = scanner.next();
 
