@@ -8,11 +8,35 @@ public class Contato {
         this.tipo = tipo;
     }
 
-    public String descricao;
-    public String telefone;
-    public int tipo; // 1 res 2 com
+    private String descricao;
+    private String telefone;
+    private int tipo; // 1 res 2 com
 
     public void imprimirContato() {
-        System.out.println(this.descricao + this.telefone + this.tipo);
+        System.out.println("Descrição: " + this.descricao + "\n Nº telefone " + this.telefone + "\n Tipo: " + this.tipo);
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 }

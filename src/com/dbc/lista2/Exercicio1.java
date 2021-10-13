@@ -15,11 +15,12 @@ public class Exercicio1 {
         float valorTotalComDesconto;
 
         for (int i = 0;i <10;i++) {
-            calcdesc = valorproduto * desconto;
-            valorComDesconto = valorproduto - calcdesc;
-            valorTotalComDesconto = valorComDesconto * (i + 1);
-            desconto += 0.05f;
-            System.out.println((i + 1) +" x R$ " + String.format("%.2f",valorComDesconto) + " = " + String.format("%.2f",valorTotalComDesconto));
+            calcdesc = valorproduto * desconto; // calcula o valor do desconto de acordo com o preço do produto
+            valorComDesconto = valorproduto - calcdesc; // diminui o valor do desconto do valor produto
+            valorTotalComDesconto = valorComDesconto * (i + 1); // pega o valor do produto com desconto e multiplica pela quantidaade
+            desconto += 0.05f;//soma e atribui 5% no desconto a cada leitura
+            System.out.println((i + 1) +" x R$ " + String.format("%.2f",valorComDesconto) + " = " +
+                    String.format("%.2f",valorTotalComDesconto));
 
         }
 

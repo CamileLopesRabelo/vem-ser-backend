@@ -25,11 +25,11 @@ public class ContaCorrente {
     }
 
     public boolean sacar(double saque) {
-        if (saque > this.saldo + this.chequeEspecial) {
-            System.out.println("vc esta liso");
+        if (saque > (this.saldo + this.chequeEspecial)) {
+            System.out.println("Saque não realizado");
             return false;
         } else {
-            this.saldo = this.saldo - saque;
+            this.saldo -= saque;
             System.out.println("Saque realizado");
             return true;
         }
@@ -37,11 +37,11 @@ public class ContaCorrente {
 
     public boolean depositar(double deposito) {
         if (deposito < 0) {
-            System.out.println("Tão querendo te roubar");
+            System.out.println("Depósito não realizado");
             return false;
         } else {
             this.saldo = this.saldo + deposito;
-            System.out.println("vc ta menos liso");
+            System.out.println("Depósito realizado com sucesso");
             return true;
         }
 
@@ -62,7 +62,7 @@ public class ContaCorrente {
         }
         if(status){
             System.out.println("Transferência realizada!");
-        } else System.out.println("Deu ruim");
+        } else System.out.println("Transferencia não realizada");
         return status;
     }
 }

@@ -12,8 +12,10 @@ public class Cliente {
  public Endereco enderecos[] = new Endereco[2];
 
  public void imprimirContatos() {
-  for (Contato cont:contatos) {
-   cont.imprimirContato();
+  for (Contato cont : contatos) {
+   if (contatos != null) {
+    cont.imprimirContato();
+   }
   }
  }
  public void imprimirEndereco() {
@@ -27,7 +29,19 @@ public class Cliente {
  }
 
 
+ public String getNome() {
+  return nome;
+ }
 
+ public void setNome(String nome) {
+  this.nome = nome;
+ }
 
+ public String getCpf() {
+  return cpf;
+ }
 
+ public void setCpf(String cpf) {
+  this.cpf = cpf;
+ }
 }

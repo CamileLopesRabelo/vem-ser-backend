@@ -18,11 +18,13 @@ public class Main {
 
 
        // System.out.println(cc1.transferir(cc2,50f));
-        cc1.depositar(2000);
-        cc2.sacar(1000);
+       // cc1.depositar(2000);
+        //cc2.sacar(1000);
 
-        cc1.imprimirContaCorrente();
-        cc2.imprimirContaCorrente();
+        //cc1.imprimirContaCorrente();
+        //cc2.imprimirContaCorrente();
+
+        c1.imprimirContatos();
 
 
 
