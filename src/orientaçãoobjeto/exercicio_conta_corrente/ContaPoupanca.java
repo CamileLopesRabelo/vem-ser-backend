@@ -16,7 +16,7 @@ public class ContaPoupanca extends Conta implements Impressao {
         System.out.println("----------Dados do Cliente----------------");
         System.out.println("Nome Cliente: " + getCliente().getNome());
         System.out.println("Agencia: " + getAgencia());
-        System.out.println("Conta: " + getNumConta());
+        System.out.println("Conya: " + getNumConta());
         System.out.println("Saldo: " + getSaldo());
     }
 
