@@ -2,7 +2,7 @@ package orientaçãoobjeto.exercicio_conta_corrente;
 
 public class ContaCorrente extends Conta implements Impressao {
     private double chequeEspecial;
-    private double somaSaldoEChequeEspecial = getSaldo() + getChequeEspecial();
+
 
     public ContaCorrente(Cliente cliente, String numConta, int agencia, double saldo,double chequeEspecial) {
         super(cliente, numConta, agencia, saldo);
@@ -44,28 +44,9 @@ public class ContaCorrente extends Conta implements Impressao {
         }
     }
 
-    @Override
-    public boolean transferir(String conta, double valor) {
-        boolean status = false;
-        if (valor < 0) {
-            status = false;
-        } else {
-            if (sacar(valor)) {
-                status = depositar(valor);
-            }
-        }
-        if(status){
-            System.out.println("Transferência realizada!");
-        } else
-            System.out.println("Transferencia não realizada");
-        return status;
-    }
 
     public double getChequeEspecial() {
         return chequeEspecial;
     }
 
-    public void setChequeEspecial(double chequeEspecial) {
-        this.chequeEspecial = chequeEspecial;
-    }
 }

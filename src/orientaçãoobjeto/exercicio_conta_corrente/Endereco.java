@@ -10,6 +10,9 @@ public class Endereco {
     private String estado;
     private String pais;
 
+    public Endereco() {
+    }
+
     public Endereco(int tipo, String logradouro, int numero, String complemento, String cep, String cidade, String estado, String pais) {
         this.tipo = tipo;
         this.logradouro = logradouro;

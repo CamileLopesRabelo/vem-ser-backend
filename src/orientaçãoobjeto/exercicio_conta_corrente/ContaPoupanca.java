@@ -20,43 +20,4 @@ public class ContaPoupanca extends Conta implements Impressao {
         System.out.println("Saldo: " + getSaldo());
         System.out.println("------------------------------------------");
     }
-
-    @Override
-    public boolean sacar(double saque) {
-        if (getSaldo() >= saque) {
-            setSaldo(getSaldo() - saque);
-            System.out.println("saque realizado");
-            return true;
-        } else System.out.println("Saldo insuficiente");return false;
-    }
-
-    @Override
-    public boolean depositar(double deposito) {
-        if (deposito <= 0) {
-            System.out.println("Depósito não realizado");
-            return false;
-        } else {
-            setSaldo(getSaldo() + deposito);
-            System.out.println("Depósito realizado com sucesso");
-            return true;
-        }
-    }
-
-    @Override
-    public boolean transferir(String conta, double valor) {
-        boolean status = false;
-        if (valor < 0) {
-            status = false;
-        } else {
-            if (sacar(valor)) {
-                status = depositar(valor);
-                setSaldo(getSaldo() - valor);
-            }
-        }
-        if(status){
-            System.out.println("Transferência realizada!");
-        } else
-            System.out.println("Transferencia não realizada");
-        return status;
-    }
 }
