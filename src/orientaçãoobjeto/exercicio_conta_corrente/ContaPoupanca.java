@@ -18,6 +18,7 @@ public class ContaPoupanca extends Conta implements Impressao {
         System.out.println("Agencia: " + getAgencia());
         System.out.println("Conya: " + getNumConta());
         System.out.println("Saldo: " + getSaldo());
+        System.out.println("------------------------------------------");
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ContaPoupanca extends Conta implements Impressao {
 
     @Override
     public boolean depositar(double deposito) {
-        if (deposito < 0) {
+        if (deposito <= 0) {
             System.out.println("Depósito não realizado");
             return false;
         } else {

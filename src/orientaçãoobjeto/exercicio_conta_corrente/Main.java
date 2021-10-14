@@ -20,14 +20,24 @@ public class Main {
     Cliente Luan = new Cliente("Luan Pereira Silva","098.654.765.78",vcttLuan,vendLuan);
     ContaPoupanca contaPoupancaLuan = new ContaPoupanca(Luan,"9876-0",876,2000);
 
-    ccCamile.sacar(1500);
-    ccCamile.imprimir();
+//    ccCamile.sacar(1000);
+//    ccCamile.imprimir();
+//    ccCamile.sacar(500);
+//    ccCamile.imprimir();
 
-    contaPoupancaLuan.transferir("24098",500);
-    contaPoupancaLuan.imprimir();
+//    contaPoupancaLuan.transferir("24098",500);
+//    contaPoupancaLuan.imprimir();
+//
+//    cpCamile.sacar(800);
+//    cpCamile.imprimir();
 
-    cpCamile.sacar(800);
-    cpCamile.imprimir();
+//        cpCamile.sacar(695.75);
+//        cpCamile.imprimir();
+
+        cpCamile.depositar(0);
+        ccCamile.depositar(0);
+        contaPoupancaLuan.depositar(0);
+
 
 
 

@@ -9,9 +9,8 @@ public class ContaPagamento extends Conta implements Impressao {
 
     @Override
     public boolean sacar(double saque) {
-        if (getSaldo() >= saque) {
-            setSaldo(getSaldo() - saque);
-            setSaldo(getSaldo() - TAXA_SAQUE);
+        if (getSaldo() >= (saque + TAXA_SAQUE)) {
+            setSaldo(getSaldo() - (saque + TAXA_SAQUE));
             System.out.println("saque realizado do saldo e cobrada a taxa de saque");
             return true;
         } else System.out.println("saldo insuficiente");return false;
@@ -19,7 +18,7 @@ public class ContaPagamento extends Conta implements Impressao {
 
     @Override
     public boolean depositar(double deposito) {
-        if (deposito < 0) {
+        if (deposito <= 0) {
             System.out.println("Depósito não realizado");
             return false;
         } else {
@@ -53,5 +52,6 @@ public class ContaPagamento extends Conta implements Impressao {
         System.out.println("Agencia: " + getAgencia());
         System.out.println("Conta: " + getNumConta());
         System.out.println("Saldo: " + getSaldo());
+        System.out.println("------------------------------------------");
     }
 }
