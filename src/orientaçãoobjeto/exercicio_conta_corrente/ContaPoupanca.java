@@ -1,16 +1,14 @@
 package orientaçãoobjeto.exercicio_conta_corrente;
 
-public class ContaCorrente extends Conta implements Impressao {
-    private double chequeEspecial;
-    private double somaSaldoEChequeEspecial = getSaldo() + getChequeEspecial();
+public class ContaPoupanca extends Conta implements Impressao {
+    private static final double JUROS_MENSAL = 1.01;
 
-    public ContaCorrente(Cliente cliente, String numConta, int agencia, double saldo,double chequeEspecial) {
+    public ContaPoupanca(Cliente cliente, String numConta, int agencia, double saldo) {
         super(cliente, numConta, agencia, saldo);
-        this.chequeEspecial = chequeEspecial;
     }
 
-    public double restornarSaldoComChequeEspecial() {
-        return getSaldo() + getChequeEspecial();
+    public void creditarTaxa() {
+        setSaldo(getSaldo() * JUROS_MENSAL);
     }
 
     @Override
@@ -24,11 +22,11 @@ public class ContaCorrente extends Conta implements Impressao {
 
     @Override
     public boolean sacar(double saque) {
-        if (saque <= getSaldo() + getChequeEspecial() && saque > 0){
+        if (getSaldo() >= saque) {
             setSaldo(getSaldo() - saque);
-            System.out.println("Saque realizado");
+            System.out.println("saque realizado");
             return true;
-        } else System.out.println("Saldo insuficiente"); return false;
+        } else System.out.println("Saldo insuficiente");return false;
     }
 
     @Override
@@ -51,6 +49,7 @@ public class ContaCorrente extends Conta implements Impressao {
         } else {
             if (sacar(valor)) {
                 status = depositar(valor);
+                setSaldo(getSaldo() - valor);
             }
         }
         if(status){
@@ -58,13 +57,5 @@ public class ContaCorrente extends Conta implements Impressao {
         } else
             System.out.println("Transferencia não realizada");
         return status;
-    }
-
-    public double getChequeEspecial() {
-        return chequeEspecial;
-    }
-
-    public void setChequeEspecial(double chequeEspecial) {
-        this.chequeEspecial = chequeEspecial;
     }
 }

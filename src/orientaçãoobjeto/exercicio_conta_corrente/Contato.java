@@ -1,16 +1,15 @@
 package orientaçãoobjeto.exercicio_conta_corrente;
 
 public class Contato {
+    private String descricao;
+    private String telefone;
+    private int tipo; // 1 res 2 com
 
     public Contato(String descricao, String telefone, int tipo){
         this.descricao = descricao;
         this.telefone = telefone;
         this.tipo = tipo;
     }
-
-    private String descricao;
-    private String telefone;
-    private int tipo; // 1 res 2 com
 
     public void imprimirContato() {
         System.out.println("Descrição: " + this.descricao + "\n Nº telefone " + this.telefone + "\n Tipo: " + this.tipo);

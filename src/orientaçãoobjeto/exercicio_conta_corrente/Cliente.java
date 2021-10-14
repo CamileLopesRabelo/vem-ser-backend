@@ -1,15 +1,17 @@
 package orientaçãoobjeto.exercicio_conta_corrente;
 
 public class Cliente {
- public Cliente(String nome, String cpf) {
+ private String nome;
+ private String cpf;
+ private Contato contatos[] = new Contato[2];
+ private Endereco enderecos[] = new Endereco[2];
+
+ public Cliente(String nome, String cpf, Contato[] contatos, Endereco[] enderecos) {
   this.nome = nome;
   this.cpf = cpf;
+  this.contatos = contatos;
+  this.enderecos = enderecos;
  }
-
- public String nome;
- public String cpf;
- public Contato contatos[] = new Contato[2];
- public Endereco enderecos[] = new Endereco[2];
 
  public void imprimirContatos() {
   for (Contato cont : contatos) {

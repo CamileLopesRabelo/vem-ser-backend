@@ -2,29 +2,34 @@ package orientaçãoobjeto.exercicio_conta_corrente;
 
 public class Main {
     public static void main(String[] args) {
-        Cliente c1 = new Cliente("Camile Lopes","009008998776");
-        Contato[] contatos = {new Contato("cel","707070707",1)};
-        Endereco[] enderecos = {new Endereco(1,"rua c",44,"","0707070","fort","ce","bra")};
-        c1.contatos = contatos;
-        c1.enderecos = enderecos;
-        ContaCorrente cc1 = new ContaCorrente(c1,"6989870",1650,200.00,100.00);
+    Contato contatoCamile = new Contato("celular","85 998987463",1);
+    Contato cttCamile[] = {contatoCamile};
+    Endereco endCamile = new Endereco(1,"rua 16",30,"sem comp","60.543-56",
+    "Fortaleza","Ceara","Brasil");
+    Endereco vendCamile[] = {endCamile};
+    Cliente cliente1 = new Cliente("Camile Lopes de Oliveira Rabelo","009.098.876.76",cttCamile,vendCamile);
 
-        Cliente c2 = new Cliente("José Didi","89766089897987");
-        Contato[] contatosc2 = {new Contato("cel","8238969669",1)};
-        Endereco[] enderecosc2 = {new Endereco(1,"rua b",74,"","045233523470","Recife","pe","bra")};
-        c2.contatos = contatosc2;
-        c2.enderecos = enderecosc2;
-        ContaCorrente cc2 = new ContaCorrente(c2,"87897870",1630,500.00,120.00);
+    ContaCorrente ccCamile = new ContaCorrente(cliente1,"24098",1460,1000,500);
+    ContaPagamento cpCamile = new ContaPagamento(cliente1,"9876-8",9883,700);
+
+    Contato contatoLuan = new Contato("cl","81 987765443",1);
+    Contato vcttLuan[] = {contatoLuan};
+    Endereco endLuan = new Endereco(1,"rua q",45,"sem comp","65.456-09",
+    "Olinda","Pernambuco","Brasil");
+    Endereco vendLuan[] = {endLuan};
+    Cliente Luan = new Cliente("Luan Pereira Silva","098.654.765.78",vcttLuan,vendLuan);
+    ContaPoupanca contaPoupancaLuan = new ContaPoupanca(Luan,"9876-0",876,2000);
+
+    ccCamile.sacar(1500);
+    ccCamile.imprimir();
+
+    contaPoupancaLuan.transferir("24098",500);
+    contaPoupancaLuan.imprimir();
+
+    cpCamile.sacar(800);
+    cpCamile.imprimir();
 
 
-       // System.out.println(cc1.transferir(cc2,50f));
-       // cc1.depositar(2000);
-        //cc2.sacar(1000);
-
-        //cc1.imprimirContaCorrente();
-        //cc2.imprimirContaCorrente();
-
-        c1.imprimirContatos();
 
 
 
