@@ -1,9 +1,9 @@
-package com.dbc.aula6;
+package com.dbc.aula6_listas_pilhas_fila_testes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Listas {
+public class ListasExercicio1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String nome = "";

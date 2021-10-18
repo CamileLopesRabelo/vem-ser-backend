@@ -9,11 +9,11 @@ public class ContaPoupancaTest {
     public void deveTestarSaqueContaPoupancaEVerificarSaldoComSucesso(){
         //setup
         Cliente camile = new Cliente("Camile","098.098.098.98");
-        ContaPoupanca contaPagamentoCamile = new ContaPoupanca(camile,"234",456,1000);
-
+        ContaPoupanca contaPoupancaCamile = new ContaPoupanca(camile,"234",456,1000);
+        contaPoupancaCamile.creditarTaxa();
         //act
-        boolean sacar = contaPagamentoCamile.sacar(400);
-        double saldo = contaPagamentoCamile.getSaldo();
+        boolean sacar = contaPoupancaCamile.sacar(400);
+        double saldo = contaPoupancaCamile.getSaldo();
 
         //assert
         assertTrue(sacar);
@@ -23,11 +23,11 @@ public class ContaPoupancaTest {
     public void deveTestarSaqueContaPoupancaSemSaldo(){
         //setup
         Cliente camile = new Cliente("Camile","098.098.098.98");
-        ContaPoupanca contaPagamentoCamile = new ContaPoupanca(camile,"234",456,1000);
+        ContaPoupanca contaPoupancaCamile = new ContaPoupanca(camile,"234",456,1000);
 
         //act
-        boolean sacar = contaPagamentoCamile.sacar(1200);
-        double saldo = contaPagamentoCamile.getSaldo();
+        boolean sacar = contaPoupancaCamile.sacar(1200);
+        double saldo = contaPoupancaCamile.getSaldo();
 
         //assert
         assertFalse(sacar);

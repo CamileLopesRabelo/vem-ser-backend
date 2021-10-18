@@ -1,4 +1,4 @@
-package com.dbc.aula6;
+package com.dbc.aula6_listas_pilhas_fila_testes;
 
 import org.junit.Test;
 
