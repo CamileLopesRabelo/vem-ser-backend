@@ -1,6 +1,5 @@
 package com.dbc.pessoaapi.repository;
 
-import com.dbc.pessoaapi.entity.Contato;
 import com.dbc.pessoaapi.entity.Endereco;
 import com.dbc.pessoaapi.entity.TipoEndereco;
 import org.springframework.stereotype.Repository;
@@ -43,18 +42,6 @@ public class EnderecoRepository {
         listaEnderecos.add(endereco);
         return endereco;
     }
-
-//    public Contato update(Integer idContato, Contato contatoAtualizar) throws Exception {
-//        Contato contatobackup = listaContatos.stream()
-//                .filter(contato -> contato.getIdContato().equals(idContato))
-//                .findFirst()
-//                .orElseThrow(() -> new Exception("Contato não  foi encontrado"));
-//        contatobackup.setIdPessoa(contatoAtualizar.getIdPessoa());
-//        contatobackup.setTipoContato(contatoAtualizar.getTipoContato());
-//        contatobackup.setNumero(contatoAtualizar.getNumero());
-//        contatobackup.setDescricao(contatoAtualizar.getDescricao());
-//        return contatobackup;
-//    }
 
     public Endereco update(Integer idEndereco, Endereco enderecoAtual) throws Exception {
         Endereco enderecoBackup = listaEnderecos.stream()
