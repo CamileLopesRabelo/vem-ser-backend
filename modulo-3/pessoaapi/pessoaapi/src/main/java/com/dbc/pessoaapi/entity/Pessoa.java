@@ -1,11 +1,19 @@
 package com.dbc.pessoaapi.entity;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class Pessoa {
     private Integer idPessoa;
+    @NotEmpty
+    @NotNull
     private String nome;
+    @NotNull
+    @Past
     private LocalDate dataNascimento;
+    @NotNull
+    @NotEmpty
+    @Size(max = 11, min = 11,message = "Deve ter 11 caracteres")
     private String cpf;
 
     public Pessoa() {
