@@ -20,35 +20,42 @@ public class PessoaService {
     private final PessoaRepository pessoaRepository;
     private final ObjectMapper objectMapper;
 
+    @Autowired
+    private EmailService emailService;
+
     public PessoaDTO create(PessoaCreateDTO pessoaCreateDTO) throws Exception {
 
-        PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO,PessoaEntity.class);
-        PessoaEntity pessoaCriada  = pessoaRepository.create(pessoaEntity);
-        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaCriada,PessoaDTO.class);
+        PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
+        PessoaEntity pessoaCriada = pessoaRepository.create(pessoaEntity);
+        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
+        emailService.enviarEmailSimples(pessoaCriada);
         return pessoaDTO;
     }
 
-    public List<PessoaDTO> list(){
+    public List<PessoaDTO> list() {
         return pessoaRepository.list().stream()
-                .map(pessoa -> objectMapper.convertValue(pessoa,PessoaDTO.class))
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
                 .collect(Collectors.toList());
     }
 
     public PessoaDTO update(Integer id,
-                              PessoaCreateDTO pessoaCreateDTO) throws Exception {
-        PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO,PessoaEntity.class);
+                            PessoaCreateDTO pessoaCreateDTO) throws Exception {
+        PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
         PessoaEntity pessoa = pessoaRepository.update(id, pessoaEntity);
-        PessoaDTO dto = objectMapper.convertValue(pessoa,PessoaDTO.class);
+        PessoaDTO dto = objectMapper.convertValue(pessoa, PessoaDTO.class);
+        emailService.enviarEmailComTemplateNoUpdatePessoa(dto);
         return dto;
     }
 
     public void delete(Integer id) throws Exception {
-         pessoaRepository.delete(id);
+        PessoaEntity pessoarecuperada = pessoaRepository.getById(id);
+        pessoaRepository.delete(pessoarecuperada.getIdPessoa());
+        emailService.enviarEmailComTemplateNoDeletePessoa(pessoarecuperada);
     }
 
     public List<PessoaDTO> listByName(String nome) {
         return pessoaRepository.listByName(nome).stream()
-                .map(pessoa -> objectMapper.convertValue(pessoa,PessoaDTO.class))
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
                 .collect(Collectors.toList());
     }
 }

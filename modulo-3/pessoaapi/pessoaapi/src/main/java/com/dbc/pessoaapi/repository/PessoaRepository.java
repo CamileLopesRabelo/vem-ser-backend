@@ -18,9 +18,9 @@ public class PessoaRepository {
 
     public PessoaRepository() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //18/10/2020
-        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
-        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
-        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
+        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910","camile.oliveira@dbccompany.com.br"));
+        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911","camile.oliveira@dbccompany.com.br"));
+        listaPessoaEntities.add(new PessoaEntity(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912","camile.oliveira@dbccompany.com.br"));
     }
 
     public PessoaEntity create(PessoaEntity pessoaEntity) throws RegraDeNegocioException {
@@ -42,6 +42,7 @@ public class PessoaRepository {
         pessoaEntityRecuperada.setCpf(pessoaEntityAtualizar.getCpf());
         pessoaEntityRecuperada.setNome(pessoaEntityAtualizar.getNome());
         pessoaEntityRecuperada.setDataNascimento(pessoaEntityAtualizar.getDataNascimento());
+        pessoaEntityRecuperada.setEmail(pessoaEntityAtualizar.getEmail());
         return pessoaEntityRecuperada;
     }
 
