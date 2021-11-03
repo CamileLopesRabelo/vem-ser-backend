@@ -1,6 +1,5 @@
 package com.dbc.pessoaapi.service;
 
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
 import freemarker.template.Configuration;
