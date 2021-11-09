@@ -25,7 +25,7 @@ public class PessoaService {
         return pessoaDTO;
     }
 
-    private PessoaEntity findById (Integer id) throws RegraDeNegocioException {
+    public PessoaEntity findById (Integer id) throws RegraDeNegocioException {
         PessoaEntity entity =pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
         return entity;

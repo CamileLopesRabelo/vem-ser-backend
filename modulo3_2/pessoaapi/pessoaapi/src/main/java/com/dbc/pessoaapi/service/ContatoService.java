@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class ContatoService {
     private final ContatoRepository contatoRepository;
     private final ObjectMapper objectMapper;
+    private final PessoaService pessoaService;
 
     private ContatoEntity findById (Integer id) throws RegraDeNegocioException {
         ContatoEntity entity = contatoRepository.findById(id)
@@ -34,6 +35,7 @@ public class ContatoService {
     }
 
     public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
+        pessoaService.findById(idPessoa);
         ContatoEntity contatoEntity = objectMapper.convertValue(contatoCreateDTO,ContatoEntity.class);
         contatoEntity.setIdPessoa(idPessoa);
         ContatoEntity contatoCriado = contatoRepository.save(contatoEntity);

@@ -3,12 +3,14 @@ package com.dbc.pessoaapi.controller;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
+import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.dbc.pessoaapi.service.PessoaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,7 @@ import java.util.List;
 @Slf4j
 public class PessoaController {
     private final PessoaService pessoaService;
+    private final PessoaRepository pessoaRepository;
 
     @PostMapping
     @ApiOperation(value = "Cria nova pessoa")
@@ -43,7 +48,6 @@ public class PessoaController {
     @GetMapping
     @ApiOperation(value = "Lista as pessoa")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Pessoa listada com sucesso"),
             @ApiResponse(code = 200, message = "Pessoa listada com sucesso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção")
     })
@@ -78,5 +82,21 @@ public class PessoaController {
         log.info("iniciando delete pessoa");
         pessoaService.delete(id);
         log.info("pessoa deletada com sucesso");
+    }
+
+    @GetMapping("/find-by-name")
+    public List<PessoaEntity> findByNomeContainingIgnoreCase(@RequestParam String nome) {
+        return pessoaRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    @GetMapping("/find-by-cpf")
+    public PessoaEntity findByCpf(@RequestParam String cpf) {
+        return  pessoaRepository.findByCpf(cpf);
+    }
+
+    @GetMapping("/find-by-data-nascimento")
+    public List<PessoaEntity> findDataNascimento(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataNascimentoInicial,
+                                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate dataNascimentoFinal) {
+        return pessoaRepository.findByDataNascimentoBetween(dataNascimentoInicial,dataNascimentoFinal);
     }
 }

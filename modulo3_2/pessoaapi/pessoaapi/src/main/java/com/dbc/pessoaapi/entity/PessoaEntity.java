@@ -1,6 +1,7 @@
 package com.dbc.pessoaapi.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -20,6 +21,7 @@ public class PessoaEntity {
     private String nome;
 
     @Column(name = "data_nascimento")
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private LocalDate dataNascimento;
 
     @Column(name = "cpf")
