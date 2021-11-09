@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 @Data
 public class ContatoCreateDTO {
     @NotNull
-    @ApiModelProperty(value = "Id Pessoa")
-    private Integer idPessoa;
-    @NotNull
     @ApiModelProperty(value = "Tipo de contato")
     private TipoContato tipoContato;
     @NotEmpty

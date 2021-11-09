@@ -41,19 +41,8 @@ public class EnderecoController {
             @ApiResponse(code = 400, message = "Endereço não encontrado"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção")
     })
-    public List<EnderecoDTO> listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) {
-                return enderecoService.listByIdEndereco(idEndereco);
-    }
-
-    @GetMapping("/{idPessoa}/pessoa")
-    @ApiOperation(value = "Lista os endereços pelo id da pessoa")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Endereço listado com sucesso"),
-            @ApiResponse(code = 400, message = "Endereço da pessoa não foi encontrado"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção")
-    })
-    public List<EnderecoDTO> listByIdPessoa(@PathVariable("idPessoa") Integer idPessoa) {
-        return enderecoService.listByIdPessoa(idPessoa);
+    public EnderecoDTO listByIdEndereco(@PathVariable("idEndereco") Integer idEndereco) throws RegraDeNegocioException {
+                return enderecoService.GetByIdEndereco(idEndereco);
     }
 
     @PostMapping("/{idPessoa}")

@@ -33,17 +33,6 @@ public class ContatoController {
         return contatoService.list();
     }
 
-    @GetMapping("/{idPessoa}")
-    @ApiOperation(value = "Lista os contatos pelo id da pessoa")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Contato criado com sucesso"),
-            @ApiResponse(code = 400, message = "Contato da pessoa não foi encontrado"),
-            @ApiResponse(code = 500, message = "Foi gerada uma exceção no sistema")
-    })
-    public List<ContatoDTO> listByName(@PathVariable("idPessoa") Integer idPessoa) throws RegraDeNegocioException {
-        return contatoService.listPorIdPessoa(idPessoa);
-    }
-
     @PostMapping("/{idPessoa}")
     @ApiOperation(value = "Cria os contatos com o id da pessoa")
     @ApiResponses(value = {
@@ -52,7 +41,7 @@ public class ContatoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção no sistema")
     })
     public ContatoDTO create(@PathVariable ("idPessoa") Integer idPessoa,
-                             @RequestBody @Valid ContatoCreateDTO contatoCreateDTO) throws Exception {
+                             @RequestBody @Valid ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         log.info("começcando a criar contato");
         ContatoDTO contatocriar = contatoService.create(idPessoa, contatoCreateDTO);
         log.info("Contato criado com sucesso");
