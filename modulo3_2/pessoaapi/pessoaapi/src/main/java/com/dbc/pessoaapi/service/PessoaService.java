@@ -60,14 +60,18 @@ public class PessoaService {
         return dto;
     }
 
-    public List<PessoaContatoDTO> listarPessoasCompleto(Integer id) {
+    public List<PessoaContatoEnderecoDTO> listarPessoasCompleto() {
         return pessoaRepository.findAll().stream()
                 .map(pessoa -> {
-                    PessoaContatoDTO pessoaContatoDTO = objectMapper.convertValue(pessoa,PessoaContatoDTO.class);
-                    pessoaContatoDTO.setContatoDTOS(pessoa.getContatos().stream()
+                    PessoaContatoEnderecoDTO pessoaContatoEnderecoDTO = objectMapper.convertValue(pessoa,PessoaContatoEnderecoDTO.class);
+                    pessoaContatoEnderecoDTO.setContatoDTOList(pessoa.getContatos().stream()
                             .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
                             .collect(Collectors.toList()));
-                    return pessoaContatoDTO;
+                    pessoaContatoEnderecoDTO.setEnderecoDTOList(pessoa.getEnderecos().stream()
+                            .map(enderecoEntity -> objectMapper.convertValue(enderecoEntity, EnderecoDTO.class))
+                            .collect(Collectors.toList())
+                    );
+                    return pessoaContatoEnderecoDTO;
                 })
                 .collect(Collectors.toList());
     }

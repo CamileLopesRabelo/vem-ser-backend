@@ -1,9 +1,6 @@
 package com.dbc.pessoaapi.controller;
 
-import com.dbc.pessoaapi.dto.PessoaContatoDTO;
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
-import com.dbc.pessoaapi.dto.PessoaDTO;
-import com.dbc.pessoaapi.dto.PessoaEnderecoDTO;
+import com.dbc.pessoaapi.dto.*;
 import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.exception.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.PessoaRepository;
@@ -104,8 +101,8 @@ public class PessoaController {
     }
 
     @GetMapping("/listar-pessoa-completo")
-    public List<PessoaContatoDTO>listarCompleto(@RequestParam(required = false) Integer idPessoa) {
-        return pessoaService.listarPessoasCompleto(idPessoa);
+    public List<PessoaContatoEnderecoDTO>listarCompleto() {
+        return pessoaService.listarPessoasCompleto();
 
     }
 
