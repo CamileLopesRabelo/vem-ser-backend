@@ -1,8 +1,11 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.dto.PessoaContatoDTO;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
+import com.dbc.pessoaapi.dto.PessoaEnderecoDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
+import com.dbc.pessoaapi.exception.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.dbc.pessoaapi.service.PessoaService;
 import io.swagger.annotations.ApiOperation;
@@ -98,5 +101,29 @@ public class PessoaController {
     public List<PessoaEntity> findDataNascimento(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataNascimentoInicial,
                                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate dataNascimentoFinal) {
         return pessoaRepository.findByDataNascimentoBetween(dataNascimentoInicial,dataNascimentoFinal);
+    }
+
+    @GetMapping("/listar-pessoa-completo")
+    public List<PessoaContatoDTO>listarCompleto(@RequestParam(required = false) Integer idPessoa) {
+        return pessoaService.listarPessoasCompleto(idPessoa);
+
+    }
+
+    @GetMapping("/pessoa-contato")
+    public List<PessoaContatoDTO>listarPessoaComContatos(@RequestParam(required = false) Integer idPessoa) throws RegraDeNegocioException {
+        if (idPessoa == null) {
+            return pessoaService.listarPessoasComContatos(idPessoa);
+        }
+        return pessoaService.listarPessoasComContatos(idPessoa);
+    }
+
+        @GetMapping("/pessoa-endereco")
+    public List<PessoaEnderecoDTO>listarPessoaComEnderecos() {
+        return pessoaService.listarPessoaComEnderecos();
+    }
+
+    @GetMapping("/pessoa-com-endereco")
+    public List<PessoaEntity> EnderecoPessoa() {
+        return pessoaRepository.EnderecoPessoa();
     }
 }

@@ -2,7 +2,9 @@ package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.dto.EnderecoDTO;
 import com.dbc.pessoaapi.dto.EnderecoCreateDTO;
+import com.dbc.pessoaapi.entity.EnderecoEntity;
 import com.dbc.pessoaapi.exception.RegraDeNegocioException;
+import com.dbc.pessoaapi.repository.EnderecoRepository;
 import com.dbc.pessoaapi.service.EnderecoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/endereco")
@@ -23,6 +26,7 @@ import java.util.List;
 public class EnderecoController {
 
     private final EnderecoService enderecoService;
+    private final EnderecoRepository enderecoRepository;
 
     @GetMapping
     @ApiOperation(value = "Lista os endereços")
@@ -86,6 +90,21 @@ public class EnderecoController {
         log.info("começando a deletar endereço");
         enderecoService.delete(idEndereco);
         log.info("endereço deletado");
+    }
+
+    @GetMapping("/endereco-por-pais")
+    public List<EnderecoEntity> enderecoByPais(@RequestParam("pais") String pais){
+        return enderecoRepository.enderecoByPais(pais.toUpperCase());
+    }
+
+    @GetMapping("/endereco-pessoa")
+    public List<EnderecoEntity> endercoByIdPessoa(@RequestParam("idPessoa") Integer idPessoa){
+        return enderecoRepository.enderecoBYIdPessoa(idPessoa);
+    }
+
+    @GetMapping("/endereco-pais-cidade")
+    public List<EnderecoEntity> enderecoPaisCidade(@RequestParam("pais") String pais,@RequestParam("cidade") String cidade){
+        return enderecoRepository.enderecoPaisCidade(pais, cidade);
     }
 
 }

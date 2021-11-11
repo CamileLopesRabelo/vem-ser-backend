@@ -1,13 +1,15 @@
 package com.dbc.pessoaapi.service;
 
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
-import com.dbc.pessoaapi.dto.PessoaDTO;
+import com.dbc.pessoaapi.dto.*;
+import com.dbc.pessoaapi.entity.ContatoEntity;
 import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.exception.RegraDeNegocioException;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,4 +59,65 @@ public class PessoaService {
         PessoaDTO dto = objectMapper.convertValue(pessoaEntityRecuperada,PessoaDTO.class);
         return dto;
     }
-}
+
+    public List<PessoaContatoDTO> listarPessoasCompleto(Integer id) {
+        return pessoaRepository.findAll().stream()
+                .map(pessoa -> {
+                    PessoaContatoDTO pessoaContatoDTO = objectMapper.convertValue(pessoa,PessoaContatoDTO.class);
+                    pessoaContatoDTO.setContatoDTOS(pessoa.getContatos().stream()
+                            .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+                            .collect(Collectors.toList()));
+                    return pessoaContatoDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+    public List<PessoaContatoDTO> listarPessoasComContatos(Integer id) throws RegraDeNegocioException {
+        List<PessoaContatoDTO> listaPessoaContatoDTO = new ArrayList<>();
+        if (id == null) {
+            listaPessoaContatoDTO = pessoaRepository.findAll().stream()
+                    .map(pessoa -> {
+                        PessoaContatoDTO pessoaContatoDTO = objectMapper.convertValue(pessoa, PessoaContatoDTO.class);
+                        pessoaContatoDTO.setContatoDTOS(pessoa.getContatos().stream()
+                                .map(contato -> {
+                                    ContatoDTO contatoDTO = objectMapper.convertValue(contato, ContatoDTO.class);
+                                    return contatoDTO;
+                                })
+                                .collect(Collectors.toList()));
+                        return pessoaContatoDTO;
+                    })
+                    .collect(Collectors.toList());
+
+            return listaPessoaContatoDTO;
+        }
+        PessoaEntity pessoa = findById(id);
+        PessoaContatoDTO pessoaContatoDTO = objectMapper.convertValue(pessoa, PessoaContatoDTO.class);
+        pessoaContatoDTO.setContatoDTOS(pessoa.getContatos().stream()
+                .map(contatoEntity -> {
+                    ContatoDTO contatoDTO = objectMapper.convertValue(contatoEntity,ContatoDTO.class);
+                    contatoDTO.setIdPessoa(id);
+                    return contatoDTO;
+                })
+                .collect(Collectors.toList())
+        );
+        listaPessoaContatoDTO.add(pessoaContatoDTO);
+        return listaPessoaContatoDTO;
+    }
+
+
+    public List<PessoaEnderecoDTO> listarPessoaComEnderecos() {
+        return pessoaRepository.findAll().stream()
+                .map(pessoaEntity -> {
+                    PessoaEnderecoDTO pessoaEnderecoDTO = objectMapper.convertValue(pessoaEntity, PessoaEnderecoDTO.class);
+                    pessoaEnderecoDTO.setEnderecoDTOS(pessoaEntity.getEnderecos().stream()
+                            .map(enderecoEntity -> {
+                                EnderecoDTO enderecoDTO = objectMapper.convertValue(enderecoEntity, EnderecoDTO.class);
+                                return enderecoDTO;
+                            })
+                            .collect(Collectors.toList()));
+                    return pessoaEnderecoDTO;
+                })
+                .collect(Collectors.toList());
+    }
+ }
+
