@@ -79,8 +79,15 @@ public class ContatoController {
         log.info("contato delatado com sucesso!s");
     }
 
+    // jpql
     @GetMapping("/contato-por-tipo")
     public List<ContatoEntity> contatobytipo(@RequestParam("tipoContato") TipoContato tipoContato) {
         return contatoRepository.contatoByTipo(tipoContato);
+    }
+
+    //query nativa
+    @GetMapping("/contato-por-idPessoa")
+    public List<ContatoEntity> contatoByIdPessoa(@RequestParam("idPessoa") Integer idPessoa) {
+        return contatoRepository.contatoByIdPessoa(idPessoa);
     }
 }

@@ -9,7 +9,12 @@ import java.util.List;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<ContatoEntity, Integer> {
+    //JPQL
     @Query("select c from Contato c where c.tipoContato = :tipoContato")
     List<ContatoEntity> contatoByTipo(TipoContato tipoContato);
+
+    // NATIVO
+    @Query(value = "select * from CONTATO c where ID_PESSOA = ?1",nativeQuery = true)
+    List<ContatoEntity> contatoByIdPessoa(Integer idPessoa);
 
 }

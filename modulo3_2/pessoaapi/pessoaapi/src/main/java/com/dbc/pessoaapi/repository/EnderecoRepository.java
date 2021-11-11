@@ -37,4 +37,6 @@ public interface EnderecoRepository extends JpaRepository<EnderecoEntity, Intege
             "where upper(pais) = upper(:pais) ")
     Page<EnderecoEntity> enderecoByPaisPageable(String pais, Pageable pageable);
 
+
+
 }

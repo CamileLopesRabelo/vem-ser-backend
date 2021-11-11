@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.dto;
 
 import com.dbc.pessoaapi.entity.TipoEndereco;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,4 +14,6 @@ import javax.validation.constraints.Size;
 public class EnderecoDTO extends EnderecoCreateDTO{
     @ApiModelProperty(value = "id endereço")
     private Integer idEndereco;
+
+    private Integer  idPessoa;
 }

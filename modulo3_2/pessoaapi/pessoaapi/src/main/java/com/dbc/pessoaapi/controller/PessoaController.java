@@ -115,12 +115,33 @@ public class PessoaController {
     }
 
         @GetMapping("/pessoa-endereco")
-    public List<PessoaEnderecoDTO>listarPessoaComEnderecos() {
-        return pessoaService.listarPessoaComEnderecos();
+    public List<PessoaEnderecoDTO>listarPessoaComEnderecos(@RequestParam(required = false) Integer idPessoa) throws RegraDeNegocioException {
+            if (idPessoa == null) {
+                return pessoaService.listarPessoaComEnderecos(idPessoa);
+            }
+            return pessoaService.listarPessoaComEnderecos(idPessoa);
     }
 
     @GetMapping("/pessoa-com-endereco")
     public List<PessoaEntity> EnderecoPessoa() {
         return pessoaRepository.EnderecoPessoa();
     }
+
+    @GetMapping("/pessoa-sem-endereco")
+    public List<PessoaEntity> pessoaSemEndereco() {
+        return pessoaRepository.pessoaSemEndereco();
+    }
+
+    @GetMapping("/pessoa-que-possuem-endereco")
+    public List<PessoaEntity> pessoaQuePossuiEndereco() {
+        return pessoaRepository.pessoaQuePossuemEndereco();
+    }
+
+    @GetMapping("/pessoa-por-dataDeNascimento")
+    public List<PessoaEntity> PessoaPorDataNasci(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateInicial,
+                                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFinal) {
+        return pessoaRepository.pessoaPorDataNasc(dateInicial,dateFinal);
+    }
+
+
 }
