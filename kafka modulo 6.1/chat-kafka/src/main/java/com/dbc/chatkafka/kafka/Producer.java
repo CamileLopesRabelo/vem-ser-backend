@@ -58,4 +58,11 @@ public class Producer {
         String payload = objectMapper.writeValueAsString(produtorDTO);
         send(payload, topico);
     }
+
+//    public void sendMessagePrivado(ProdutorDTO produtorDTO) throws JsonProcessingException {
+//        for(String usuario : produtorDTO.getUsuario())  {
+//            String topico = "chat-" + usuario;
+//            String payload = objectMapper.writeValueAsString(produtorDTO.getMensagem());
+//            send(payload, topico);
+//        }
 }
