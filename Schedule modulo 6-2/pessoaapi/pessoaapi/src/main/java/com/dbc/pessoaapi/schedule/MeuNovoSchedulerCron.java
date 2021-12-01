@@ -28,7 +28,7 @@ public class MeuNovoSchedulerCron {
         }
     }
 
-    @Scheduled(cron = "0 44 18 * * *", zone = "GMT-3")
+    @Scheduled(cron = "0 0 8 23 12 *", zone = "GMT-3")
     public void meuSegundoScheduler() throws InterruptedException {
         List<PessoaEntity> todasAsPessoas  = pessoaRepository.findAll();
         for (PessoaEntity pessoa: todasAsPessoas) {
