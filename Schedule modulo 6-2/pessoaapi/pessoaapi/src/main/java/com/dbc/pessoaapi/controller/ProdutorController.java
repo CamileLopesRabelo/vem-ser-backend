@@ -1,0 +1,28 @@
+package com.dbc.pessoaapi.controller;
+
+import com.dbc.pessoaapi.dto.EmailDTO;
+import com.dbc.pessoaapi.dto.PessoaDTO;
+import com.dbc.pessoaapi.kafka.Producer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/kafka")
+@RequiredArgsConstructor
+public class ProdutorController {
+    private final Producer producer;
+
+//    @PostMapping("/enviar")
+//    public void enviar(String mensagem) {
+//        producer.sendMessage(mensagem);
+//    }
+
+    @PostMapping("/email")
+    public void inserirEmailKafka(@RequestBody EmailDTO emailDTO) throws JsonProcessingException {
+        producer.sendMessageDTO(emailDTO);
+    }
+}
